@@ -1,0 +1,10 @@
+8FEC6205A1D4449C.b none swap sw
+8FEC6205A1D4449C.a / ffs rw 1 1
+8FEC6205A1D4449C.l /home ffs rw,nodev,nosuid 1 2
+8FEC6205A1D4449C.d /tmp ffs rw,nodev,nosuid 1 2
+8FEC6205A1D4449C.f /usr ffs rw,nodev 1 2
+8FEC6205A1D4449C.g /usr/X11R6 ffs rw,nodev 1 2
+8FEC6205A1D4449C.h /usr/local ffs rw,wxallowed,nodev 1 2
+8FEC6205A1D4449C.k /usr/obj ffs rw,nodev,nosuid 1 2
+8FEC6205A1D4449C.j /usr/src ffs rw,nodev,nosuid 1 2
+8FEC6205A1D4449C.e /var ffs rw,nodev,nosuid 1 2

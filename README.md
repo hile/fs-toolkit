@@ -1,0 +1,29 @@
+# Filesystem information tools
+
+This module contains utilities to query local filesystem information as python objects,
+including mount points, disk usage and fstab contents.
+
+## Installing
+
+```bash
+pip install fs-toolkit
+```
+
+## Basic examples
+
+Some usage examples
+
+Fstab:
+
+```bash
+from fs_toolkit.fstab import Fstab
+fstab = Fstab()
+fstab.get_by_mountpoint('/var/my-secrets').uuid
+```
+
+Mounts and df (linked together):
+
+```bash
+from fs_toolkit.mounts import Mountpoints
+print('\n'.join(f'{mp.usage.used:10} {mp.mountpoint}' for mp in Mountpoints()))
+```

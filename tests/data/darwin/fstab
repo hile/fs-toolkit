@@ -1,0 +1,3 @@
+#
+UUID=901C5425-95A6-4735-975D-0FE7D1AC76A9  /Users/pytest/Documents/Private          apfs rw,nosuid,nodev
+UUID=9BA923E6-CC17-4CD8-AAFF-A284E1140733  /Users/pytest/Projects/python/fs-toolkit apfs rw,nobrowse,nosuid,nodev

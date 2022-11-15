@@ -1,0 +1,5 @@
+#
+#
+# Unit test fstab file with encoded path names using \040 an \011 escapes
+UUID=38D9E384-3C40-4A46-8B12-561DF4F5312A   /dir\040with\040spaces ext4 errors=remount-ro 0 0
+UUID=C61BAD44-0C66-48B5-AA67-94976C0C95CD   /dir\011with\011tabs   ext4 errors=remount-ro 0 0

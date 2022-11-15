@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "fs-oolkit"
+version = "1.0.0"
+description = "Classes for operating system utilities"
+authors = ["Ilkka Tuohela <hile@iki.fi>"]
+readme = "README.md"
+include = [
+    "LICENSE",
+]
+license = "BSD"
+classifiers = [
+    "Environment :: Console",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+sys-toolkit = "^2.2.4"
+
+[tool.poetry.dev-dependencies]
+coverage = "^6.1"
+flake8 = "^5.0"
+flake8-bugbear = "^22"
+flake8-quotes = "^3.3"
+pycodestyle = "^2.8"
+pyflakes = "^2.4"
+pylint = "^2"
+pytest = "^7.1"
+tox = "^3"
+
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"
