@@ -1,3 +1,6 @@
+![Unit Tests](https://github.com/hile/fs-toolkit/actions/workflows/unittest.yml/badge.svg)
+![Style Checks](https://github.com/hile/fs-toolkit/actions/workflows/lint.yml/badge.svg)
+
 # Filesystem information tools
 
 This module contains utilities to query local filesystem information as python objects,
