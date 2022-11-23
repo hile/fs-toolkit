@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fs-toolkit"
-version = "1.0.0"
-description = "Classes for operating system utilities"
+version = "1.0.1"
+description = "Classes for filesystem usage utilities"
 authors = ["Ilkka Tuohela <hile@iki.fi>"]
 readme = "README.md"
 include = [
@@ -16,12 +16,13 @@ classifiers = [
     "Operating System :: Unix",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Topic :: Utilities",
 ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-sys-toolkit = "^2.2.4"
+sys-toolkit = "^2.2"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.1"
