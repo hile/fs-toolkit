@@ -6,6 +6,9 @@
 This module contains utilities to query local filesystem information as python objects,
 including mount points, disk usage and fstab contents.
 
+This tool does similar things as `psutil` package: it may be better suited to
+your use and has many features missing from this module.
+
 ## Installing
 
 ```bash

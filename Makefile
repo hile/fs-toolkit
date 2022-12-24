@@ -39,7 +39,7 @@ doc: virtualenv
 	. ${VENV_BIN}/activate; sphinx-build ${SPHINX_FLAGS}
 
 unittest: virtualenv
-	. ${VENV_BIN}/activate && poetry run coverage run --source "${MODULE}" --module py.test
+	. ${VENV_BIN}/activate && poetry run coverage run --source "${MODULE}" --module pytest
 	. ${VENV_BIN}/activate && poetry run coverage html
 	. ${VENV_BIN}/activate && poetry run coverage report
 
