@@ -24,7 +24,7 @@ class DuidMap(CachedMutableMapping):
         stdout, _stderr = run_command(*('sysctl', '-n', 'hw.disknames'))
         return [str(line, 'utf-8') for line in stdout.splitlines()]
 
-    def update(self, other=(), /, **kwds):
+    def update(self, **kwargs):
         """
         Update DUID map values
         """
