@@ -7,6 +7,7 @@
 Unit tests configuration for fs_toolkit module
 """
 from pathlib import Path
+from typing import Any, Dict, Iterator, List, Union
 
 import pytest
 
@@ -15,7 +16,7 @@ from sys_toolkit.tests.mock import MockCalledMethod
 from fs_toolkit.fstab import Fstab
 from fs_toolkit.mounts import Mountpoints
 
-MOCK_DATA = Path(__file__).parent.joinpath('data')
+MOCK_DATA = Path(__file__).parent.joinpath('mock')
 
 PLATFORM_MAP = {
     'freebsd': 'bsd',
@@ -36,11 +37,13 @@ class LoadMockData(MockCalledMethod):
     """
     Load mock data as text lines
     """
-    def __init__(self, filename):
+    filename: Union[str, Path]
+
+    def __init__(self, filename: Union[str, Path]) -> None:
         super().__init__()
         self.filename = filename
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: List[Any], **kwargs: Dict[Any, Any]) -> List[str]:
         """
         Return mocked data as text lines
         """
@@ -59,7 +62,7 @@ def mock_openbsd_duidmap(monkeypatch):
     )
 
 
-def mock_platform_toolchain(monkeypatch, environment: str) -> Mountpoints:
+def mock_platform_toolchain(monkeypatch, environment: str) -> None:
     """
     Mock platform and toolchain
     """
@@ -73,7 +76,7 @@ def mock_platform_toolchain(monkeypatch, environment: str) -> Mountpoints:
     )
 
 
-def mock_data_loaders(monkeypatch, environment: str) -> Mountpoints:
+def mock_data_loaders(monkeypatch, environment: str) -> None:
     """
     Mock mount and df command data outputs
     """
@@ -91,7 +94,7 @@ def mock_data_loaders(monkeypatch, environment: str) -> Mountpoints:
     )
 
 
-def mock_environment_fstab(monkeypatch, environment: str) -> Mountpoints:
+def mock_environment_fstab(monkeypatch, environment: str) -> Fstab:
     """
     Mock specified platform, toolchain and data for Fstab class
     """
@@ -110,7 +113,7 @@ def mock_environment_mountpoints(monkeypatch, environment: str) -> Mountpoints:
 
 
 @pytest.fixture
-def mock_platform_data(monkeypatch) -> Mountpoints:
+def mock_platform_data(monkeypatch) -> Iterator[Mountpoints]:
     """
     Mock platform and toolchain without data
     """
@@ -119,7 +122,7 @@ def mock_platform_data(monkeypatch) -> Mountpoints:
 
 
 @pytest.fixture
-def bsd_fstab(monkeypatch) -> Fstab:
+def bsd_fstab(monkeypatch) -> Iterator[Fstab]:
     """
     Mock loading of BSD fstab data from text files
     """
@@ -127,7 +130,7 @@ def bsd_fstab(monkeypatch) -> Fstab:
 
 
 @pytest.fixture
-def bsd_mountpoints(monkeypatch) -> Mountpoints:
+def bsd_mountpoints(monkeypatch) -> Iterator[Mountpoints]:
     """
     Mock loading of BSD mountpoints data from text files
     """
@@ -135,7 +138,7 @@ def bsd_mountpoints(monkeypatch) -> Mountpoints:
 
 
 @pytest.fixture
-def darwin_fstab(monkeypatch) -> Fstab:
+def darwin_fstab(monkeypatch) -> Iterator[Fstab]:
     """
     Mock loading of macOS darwin fstab data from text files
     """
@@ -143,7 +146,7 @@ def darwin_fstab(monkeypatch) -> Fstab:
 
 
 @pytest.fixture
-def darwin_mountpoints(monkeypatch) -> Mountpoints:
+def darwin_mountpoints(monkeypatch) -> Iterator[Mountpoints]:
     """
     Mock loading of macOS darwin mountpoints data from text files
     """
@@ -151,7 +154,7 @@ def darwin_mountpoints(monkeypatch) -> Mountpoints:
 
 
 @pytest.fixture
-def linux_fstab(monkeypatch) -> Fstab:
+def linux_fstab(monkeypatch) -> Iterator[Fstab]:
     """
     Mock loading of Linux fstab data from text files
     """
@@ -159,7 +162,7 @@ def linux_fstab(monkeypatch) -> Fstab:
 
 
 @pytest.fixture
-def linux_mountpoints(monkeypatch) -> Mountpoints:
+def linux_mountpoints(monkeypatch) -> Iterator[Mountpoints]:
     """
     Mock loading of Linux mountpoints data from text files
     """
@@ -167,7 +170,7 @@ def linux_mountpoints(monkeypatch) -> Mountpoints:
 
 
 @pytest.fixture
-def openbsd_fstab(monkeypatch) -> Fstab:
+def openbsd_fstab(monkeypatch) -> Iterator[Fstab]:
     """
     Mock loading of OpenBSD fstab data from text files
     """
@@ -176,7 +179,7 @@ def openbsd_fstab(monkeypatch) -> Fstab:
 
 
 @pytest.fixture
-def openbsd_mountpoints(monkeypatch) -> Mountpoints:
+def openbsd_mountpoints(monkeypatch) -> Iterator[Mountpoints]:
     """
     Mock loading of OpenBSD mountpoints data from text files
     """
@@ -184,7 +187,7 @@ def openbsd_mountpoints(monkeypatch) -> Mountpoints:
 
 
 @pytest.fixture
-def fstab_encoded_paths(monkeypatch) -> Fstab:
+def fstab_encoded_paths(monkeypatch) -> Iterator[Fstab]:
     """
     Return a demo fstab test file with spaces and tabs encoded in mountpoints
     """
@@ -197,7 +200,7 @@ def fstab_encoded_paths(monkeypatch) -> Fstab:
 
 
 @pytest.fixture
-def unexpected_platform(monkeypatch):
+def unexpected_platform(monkeypatch) -> None:
     """
     Mock unexpected platform information for mountpoints object
     """
@@ -212,7 +215,7 @@ def unexpected_platform(monkeypatch):
 
 
 @pytest.fixture
-def unexpected_toolchain(monkeypatch):
+def unexpected_toolchain(monkeypatch) -> None:
     """
     Mock unexpected toolchain information for known platform
     """

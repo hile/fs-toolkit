@@ -7,6 +7,10 @@
 Common base classes for platform specific mounts classes
 """
 from pathlib import Path
+from typing import List, Optional, Tuple, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..loader import Mountpoints
 
 
 # pylint: disable=too-few-public-methods
@@ -14,14 +18,16 @@ class MountpointOptions:
     """
     Options for filesystem mount point
     """
-    def __init__(self, mountpoint, options):
+    def __init__(self,
+                 mountpoint: 'Mountpoint',
+                 options: Optional[Union[str, List[str]]]) -> None:
         self.mountpoint = mountpoint
         options = self.__parse_options__(options)
         for flag in options:
             setattr(self, flag, True)
 
     @staticmethod
-    def __parse_options__(options):
+    def __parse_options__(options: Union[str, List[str]]) -> List[str]:
         """
         Parse options from string to a list
         """
@@ -33,24 +39,29 @@ class MountpointOptions:
 # pylint: disable=too-few-public-methods
 class MountpointUsage:
     """
-
     Mountpoint usage stats data
     """
-    def __init__(self, mountpoint):
+    mountpoint: 'Mountpoint'
+    size: Optional[int]
+    available: Optional[int]
+    used: Optional[int]
+    percent: Optional[int]
+
+    def __init__(self, mountpoint: 'Mountpoint') -> None:
         self.mountpoint = mountpoint
         self.size = None
         self.available = None
         self.used = None
         self.percent = None
 
-    def __set_value__(self, attr, value):
+    def __set_value__(self, attr: str, value: int) -> None:
         """
         Set value for usage counter
         """
         value = int(value)
         setattr(self, attr, value)
 
-    def load_data(self, data):
+    def load_data(self, data: dict) -> None:
         """
         Load usage data for mountpoint
         """
@@ -64,17 +75,19 @@ class Filesystem:
     """
     Filesystem for a mountpoint
     """
-    virtual_filesystems = ()
+    mountpoint: 'Mountpoint'
+    name: str
+    virtual_filesystems: Tuple[str] = ()
 
-    def __init__(self, mountpoint, name):
+    def __init__(self, mountpoint: 'Mountpoint', name: str) -> None:
         self.mountpoint = mountpoint
         self.name = name
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.name
 
     @property
-    def is_virtual(self):
+    def is_virtual(self) -> bool:
         """
         Return True if filesystem is a virtual filesystem
         """
@@ -85,17 +98,17 @@ class Mountpoint:
     """
     Filesystem mount point linked to Mountpoints
     """
-    filesystem_class = Filesystem
-    options_class = MountpointOptions
-    usage_class = MountpointUsage
+    mountpoints: 'Mountpoints'
+    filesystem_class: Filesystem
+    options_class: MountpointOptions
+    usage_class: MountpointUsage
 
     def __init__(self,
-                 mountpoints,
-                 device,
-                 mountpoint,
-                 filesystem=None,
-                 options=None):
-
+                 mountpoints: 'Mountpoints',
+                 device: str,
+                 mountpoint: str,
+                 filesystem: Optional[str] = None,
+                 options: Optional[Union[str, List[str]]] = None):
         self.mountpoints = mountpoints
         self.device = device
         self.mountpoint = mountpoint
@@ -103,24 +116,24 @@ class Mountpoint:
         self.options = self.options_class(self, options)
         self.usage = self.usage_class(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'{self.device} mounted on {self.mountpoint}'
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
-        Return basename of mountpoint
+        Return basename of mountpoint as string
         """
         return Path(self.mountpoint).name
 
     @property
-    def is_virtual(self):
+    def is_virtual(self) -> bool:
         """
         Check if filesystem is virtual
         """
         return self.filesystem.is_virtual
 
-    def load_usage_data(self, data):
+    def load_usage_data(self, data: dict) -> None:
         """
         Load filesystem usage data for mountpoint
         """

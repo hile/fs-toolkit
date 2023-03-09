@@ -6,7 +6,8 @@
 """
 Mountpoints loader main class MountPoints()
 """
-from typing import List
+from re import Pattern
+from typing import List, Optional, Tuple
 
 from sys_toolkit.subprocess import run_command
 
@@ -35,10 +36,11 @@ class Mountpoints(LineLoader):
     """
     Filesystem mount points with usage
     """
-    __mount_command__ = None
-    __df_command__ = None
-    __re_mount_patterns__ = None
-    __re_df_patterns__ = None
+    __mountpoint_class__: Mountpoint
+    __mount_command__: Tuple[str] = None
+    __df_command__: Tuple[str] = None
+    __re_mount_patterns__: Optional[List[Pattern]] = None
+    __re_df_patterns__: Optional[List[Pattern]] = None
 
     def __init__(self):
         super().__init__()
@@ -46,7 +48,7 @@ class Mountpoints(LineLoader):
         self.__initialize_toolchain_based_data__()
         self.__iter_items__ = None
 
-    def __detect_mountpoint_class__(self):
+    def __detect_mountpoint_class__(self) -> None:
         """
         Detect mountpoint loader class based on platform family
         """
@@ -61,7 +63,7 @@ class Mountpoints(LineLoader):
         else:
             raise FilesystemError(f'Unsupported OS platform: {self.__platform__}')
 
-    def __initialize_toolchain_based_data__(self):
+    def __initialize_toolchain_based_data__(self) -> None:
         """
         Initialize toolchain specific commands and regexp patterns
         """
@@ -106,11 +108,11 @@ class Mountpoints(LineLoader):
         """
         return self.__match_pattern_list__(lines, self.__re_df_patterns__)
 
-    def append(self, value):
+    def append(self, value: Mountpoint) -> Mountpoint:
         assert isinstance(value, Mountpoint)
         return super().append(value)
 
-    def insert(self, index, value):
+    def insert(self, index: int, value: Mountpoint) -> Mountpoint:
         assert isinstance(value, Mountpoint)
         return super().insert(index, value)
 

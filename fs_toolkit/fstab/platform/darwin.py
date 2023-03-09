@@ -6,3 +6,17 @@
 """
 Fstab parser for macOS Darwin
 """
+from .base import FstabComment, FstabEntry
+
+
+# pylint: disable=too-few-public-methods
+class DarwinFstabComment(FstabComment):
+    """
+    Darwin specific class for fstab entries
+    """
+
+
+class DarwinFstabEntry(FstabEntry):
+    """
+    Darwin specific class for fstab entries
+    """

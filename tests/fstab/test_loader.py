@@ -19,6 +19,15 @@ MOCK_FILE = MOCK_DATA.joinpath('darwin/fstab')
 INVALID_FILE = MOCK_DATA.joinpath('invalid_fstab')
 
 
+# pylint: disable=unused-argument
+def test_fstab_unexpeted_platform(unexpected_platform) -> None:
+    """
+    Test initialzing a Fstab object with unknown platflorm
+    """
+    with pytest.raises(FilesystemError):
+        Fstab()
+
+
 def test_fstab_get_fstab_lines(monkeypatch):
     """
     Test calling of the __get_fstab_lines__ internal method to read text line from file

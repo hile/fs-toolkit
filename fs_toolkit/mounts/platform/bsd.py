@@ -6,6 +6,7 @@
 """
 Generic BSD mountpoints (FreeBSD, MacOS)
 """
+from typing import List, Optional, Union
 from .base import Mountpoint, Filesystem, MountpointOptions, MountpointUsage
 
 BSD_VIRTUAL_FILESYSTEMS = (
@@ -19,13 +20,17 @@ class BSDMountpointUsage(MountpointUsage):
     """
     BSD specific mountpoint usage data
     """
-    def __init__(self, mountpoint):
+    inodes_used: Optional[int]
+    inodes_available: Optional[int]
+    inodes_percent: Optional[int]
+
+    def __init__(self, mountpoint: 'BSDMountpoint') -> None:
         super().__init__(mountpoint)
         self.inodes_used = None
         self.inodes_available = None
         self.inodes_percent = None
 
-    def load_data(self, data):
+    def load_data(self, data: dict) -> None:
         """
         Load BSD specific filesystem usage data
         """
@@ -40,7 +45,9 @@ class BSDMountPointOptions(MountpointOptions):
     """
     BSD specific mountpoint options
     """
-    def __init__(self, mountpoint, options=None):
+    def __init__(self,
+                 mountpoint: 'BSDMountpoint',
+                 options: Optional[Union[str, List[str]]] = None) -> None:
         options = self.__parse_options__(options)
         filesystem = options[0]
         options = options[1:]

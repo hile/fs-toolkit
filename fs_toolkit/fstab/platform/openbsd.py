@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 """
-Platform specific code to handle fstab devices on OpenBSD
+Platform specific code to handle fstab devices on OpenOpenBSD
 """
 from pathlib import Path
 from typing import Optional
@@ -12,10 +12,25 @@ from typing import Optional
 from sys_toolkit.collection import CachedMutableMapping
 from sys_toolkit.subprocess import run_command
 
+from .base import FstabComment, FstabEntry
+
+
+# pylint: disable=too-few-public-methods
+class OpenBSDFstabComment(FstabComment):
+    """
+    OpenBSD specific class for fstab entries
+    """
+
+
+class OpenBSDFstabEntry(FstabEntry):
+    """
+    OpenBSD specific class for fstab entries
+    """
+
 
 class DuidMap(CachedMutableMapping):
     """
-    OpenBSD Disklabel Unique Identifiers (DUIDs) mapping to device names
+    OpenOpenBSD Disklabel Unique Identifiers (DUIDs) mapping to device names
     """
     def __get_sysctl_output__(self) -> str:
         """
