@@ -1,0 +1,17 @@
+Filesystem     1K-blocks    Used Available Use% Mounted on
+devtmpfs            4096       0      4096   0% /dev
+tmpfs            4058792       0   4058792   0% /dev/shm
+tmpfs            1623520    9480   1614040   1% /run
+tmpfs               4096       0      4096   0% /sys/fs/cgroup
+/dev/sda2       64878592 7732240  55398480  13% /
+/dev/sda2       64878592 7732240  55398480  13% /.snapshots
+/dev/sda2       64878592 7732240  55398480  13% /boot/grub2/arm64-efi
+/dev/sda2       64878592 7732240  55398480  13% /opt
+/dev/sda2       64878592 7732240  55398480  13% /root
+/dev/sda2       64878592 7732240  55398480  13% /var
+/dev/sda2       64878592 7732240  55398480  13% /tmp
+/dev/sda2       64878592 7732240  55398480  13% /srv
+/dev/sda2       64878592 7732240  55398480  13% /usr/local
+/dev/sda2       64878592 7732240  55398480  13% /home
+/dev/sda1         130796    7686    123110   6% /boot/efi
+tmpfs             811756      32    811724   1% /run/user/1000

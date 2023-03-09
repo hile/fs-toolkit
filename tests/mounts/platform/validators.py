@@ -14,22 +14,29 @@ from fs_toolkit.mounts.loader import Mountpoints, Mountpoint
 
 FILESYSTEMS_NO_USAGE = (
     'autofs',
+    'binfmt_misc',
     'bpf',
     'cgroup',
     'cgroup2',
+    'configfs',
     'devpts',
+    'devtmpfs',
     'efivarfs',
+    'fusectl',
     'hugetlbfs',
     'debugfs',
     'mqueue',
     'rpc_pipefs',
     'overlay',
+    'ramfs',
     'sysfs',
     'proc',
     'procfs',
     'pstore',
     'securityfs',
+    'selinuxfs',
     'tmpfs',
+    'tracefs',
     'nsfs',
 )
 
@@ -58,17 +65,15 @@ def validate_mountpoint(mountpoint: Mountpoint) -> None:
 
 def validate_mountpoints_properties(
         mountpoints: Mountpoints,
-        count: int,
         platform: str,
         toolchain: str) -> None:
     """
     Validate loaded platform specific mountpoint options
     """
-    assert len(mountpoints) == count
-
     assert mountpoints.__platform__ == platform
     assert mountpoints.__toolchain__ == toolchain
 
+    assert len(mountpoints) > 0
     for mountpoint in mountpoints:
         validate_mountpoint(mountpoint)
 

@@ -1,0 +1,16 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Thu May 19 03:39:51 2022
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/almalinux-root /                       xfs     defaults        0 0
+UUID=0ba460bc-3dbf-4a65-bc44-3eafe812a1e4 /boot                   xfs     defaults        0 0
+UUID=C009-2E4E          /boot/efi               vfat    umask=0077,shortname=winnt 0 2
+/dev/mapper/almalinux-home /home                   xfs     defaults        0 0
+/dev/mapper/almalinux-swap none                    swap    defaults        0 0

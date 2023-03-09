@@ -8,8 +8,6 @@ Unit tests for fs_toolkit.fstab module with Linux data
 """
 from .validators import validate_fstab
 
-LINUX_FSTAB_ITEM_COUNT = 4
-
 # Trivial cases, the linux way with spaces and tabs in mountpoint
 FSTAB_SPACED_MOUNTPOINT = '/dir with spaces'
 FSTAB_TABBED_MOUNTPOINT = '/dir\twith\ttabs'
@@ -21,15 +19,17 @@ def test_linux_fstab_properties(linux_fstab):
     """
     for item in linux_fstab:
         print(item)
-    validate_fstab(linux_fstab, LINUX_FSTAB_ITEM_COUNT)
+    validate_fstab(linux_fstab)
 
 
 def test_linux_fstab_get_by_device(linux_fstab):
     """
     Get looking up fstab entry by label
     """
-    item = linux_fstab[-1]
-    assert linux_fstab.get_by_device(item.device) == item
+    for item in linux_fstab:
+        if item.device is not None:
+            print(f'look up device {item.device}')
+            assert linux_fstab.get_by_device(item.device) == item
 
 
 def test_linux_fstab_get_by_label(linux_fstab):

@@ -1,0 +1,8 @@
+Filesystem                        1K-blocks    Used Available Use% Mounted on
+tmpfs                                811972     864    811108   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv  31270768 7262536  22394204  25% /
+tmpfs                               4059852       0   4059852   0% /dev/shm
+tmpfs                                  5120       0      5120   0% /run/lock
+/dev/sda2                           1992552  256644   1614668  14% /boot
+/dev/sda1                           1098628    6452   1092176   1% /boot/efi
+tmpfs                                811968       4    811964   1% /run/user/1000

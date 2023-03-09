@@ -1,0 +1,12 @@
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /                      btrfs  defaults                        0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /var                   btrfs  subvol=/@/var                   0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /usr/local             btrfs  subvol=/@/usr/local             0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /tmp                   btrfs  subvol=/@/tmp                   0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /srv                   btrfs  subvol=/@/srv                   0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /root                  btrfs  subvol=/@/root                  0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /opt                   btrfs  subvol=/@/opt                   0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /home                  btrfs  subvol=/@/home                  0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /boot/grub2/arm64-efi  btrfs  subvol=/@/boot/grub2/arm64-efi  0  0
+UUID=e3a6e6af-5bc5-4326-8642-2970e1fce20d  /.snapshots            btrfs  subvol=/@/.snapshots            0  0
+UUID=45165333-db9a-4719-b108-1c8fce91d055  swap                   swap   defaults                        0  0
+UUID=5CF4-BC0B                             /boot/efi              vfat   utf8                            0  2

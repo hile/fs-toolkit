@@ -69,14 +69,14 @@ def validate_fstab_entry(entry: FstabEntry) -> None:
         validate_string_list_attribute(getattr(entry, attr))
 
 
-def validate_fstab(fstab: Fstab, count: int) -> None:
+def validate_fstab(fstab: Fstab) -> None:
     """
     Test fstab object
     """
-    print(f'{fstab.__platform__} total {len(fstab)} expected count {count}')
+    print(f'{fstab.__platform__} total {len(fstab)}')
     assert isinstance(fstab, Fstab)
-    assert len(fstab) == count
-
     assert isinstance(fstab.__repr__(), str)
+
+    assert len(fstab) > 0
     for entry in fstab:
         validate_fstab_entry(entry)

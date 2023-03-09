@@ -15,8 +15,8 @@ from fs_toolkit.mounts import Mountpoints
 
 from ..conftest import MOCK_DATA
 
-MOCK_MOUNT_FILE = MOCK_DATA.joinpath('freebsd/mount')
-MOCK_DF_FILE = MOCK_DATA.joinpath('freebsd/df')
+MOCK_MOUNT_FILE = MOCK_DATA.joinpath('freebsd13/mount')
+MOCK_DF_FILE = MOCK_DATA.joinpath('freebsd13/df')
 
 
 # pylint:disable=too-few-public-methods

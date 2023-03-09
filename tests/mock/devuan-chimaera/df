@@ -1,0 +1,10 @@
+Filesystem                  1K-blocks    Used Available Use% Mounted on
+udev                          4017736       0   4017736   0% /dev
+tmpfs                          813508     832    812676   1% /run
+/dev/mapper/devuan--vg-root  63739556 3663136  56806176   7% /
+tmpfs                            5120       4      5116   1% /run/lock
+tmpfs                         1627000       0   1627000   0% /dev/shm
+/dev/sda2                      481642  123550    333107  28% /boot
+/dev/sda1                      524000    5944    518056   2% /boot/efi
+cgroup_root                     10240       0     10240   0% /sys/fs/cgroup
+tmpfs                          813504       0    813504   0% /run/user/1000

@@ -15,11 +15,9 @@ from fs_toolkit.fstab.platform.openbsd import DuidMap
 from ...conftest import MOCK_DATA
 from .validators import validate_fstab
 
-MOCK_DUID_DATA = MOCK_DATA.joinpath('openbsd/sysctl.hw.disknames')
-
-OPENBSD_FSTAB_ITEM_COUNT = 10
-
+MOCK_DUID_DATA = MOCK_DATA.joinpath('openbsd7/sysctl.hw.disknames')
 MOCK_DUID_MAP_ITEM_COUNT = 3
+
 INVALID_DUID = '12345567812345678'
 VALID_DUID = '149427019F845CBB'
 VALID_DUID_DEVICE = Path('/dev/sd1')
@@ -46,7 +44,7 @@ class MockRunDuiDCommands(MockRun):
 
 
 # pylint: disable=unused-argument
-def test_load_duidmap__get_sysctl_output__(monkeypatch):
+def test_load_duidmap_get_sysctl_output__(monkeypatch):
     """
     Mock the __get_sysctl_output__ return value for DUID map, loading 'real' data
     with 'real' commmand
@@ -87,4 +85,4 @@ def test_openbsd_fstab_properties(openbsd_fstab):
     """
     Test properties of a OpenBSD fstab object
     """
-    validate_fstab(openbsd_fstab, OPENBSD_FSTAB_ITEM_COUNT)
+    validate_fstab(openbsd_fstab)

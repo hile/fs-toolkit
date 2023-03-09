@@ -1,0 +1,9 @@
+Filesystem                 1K-blocks    Used Available Use% Mounted on
+devtmpfs                        4096       0      4096   0% /dev
+tmpfs                        3889800       0   3889800   0% /dev/shm
+tmpfs                        1555924    9056   1546868   1% /run
+/dev/mapper/almalinux-root  39441596 2655824  36785772   7% /
+/dev/sda2                    1038336  354232    684104  35% /boot
+/dev/sda1                     613160    7184    605976   2% /boot/efi
+/dev/mapper/almalinux-home  19257344  167432  19089912   1% /home
+tmpfs                         777960       8    777952   1% /run/user/1085

@@ -1,0 +1,10 @@
+Filesystem          1K-blocks    Used Available Use% Mounted on
+devtmpfs                 4096       0      4096   0% /dev
+tmpfs                 3889676       0   3889676   0% /dev/shm
+tmpfs                 1555872    9560   1546312   1% /run
+/dev/mapper/rl-root  39441596 4791720  34649876  13% /
+/dev/sda2             1038336  465592    572744  45% /boot
+/dev/mapper/rl-home  19257344  171824  19085520   1% /home
+/dev/sda1              613160    7128    606032   2% /boot/efi
+tmpfs                  777932      52    777880   1% /run/user/42
+tmpfs                  777932      36    777896   1% /run/user/1000
