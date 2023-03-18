@@ -77,6 +77,12 @@ class FstabEntry(FstabItem):
         super().__init__(line)
         self.__parse_line__(line)
 
+    def __hash__(self) -> str:
+        """
+        Hash fstab entries by line string
+        """
+        return hash(self.__line__)
+
     def __parse_line__(self, line: str) -> None:
         """
         Parse fstab line to entry attributes with FSTAB_FIELDS

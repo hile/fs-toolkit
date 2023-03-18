@@ -7,6 +7,7 @@
 Unit tests for fs_toolkit.fstab.platform.openbsd module
 """
 from pathlib import Path
+from typing import Tuple
 
 from sys_toolkit.tests.mock import MockRun
 
@@ -33,18 +34,18 @@ class MockRunDuiDCommands(MockRun):
         self.stderr = stderr
         self.duid_data = MOCK_DUID_DATA.read_bytes()
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs) -> Tuple[bytes, bytes]:
         """
         Call mocked check_output, storing call argument and returning data
         """
         super().__call__(*args, **kwargs)
         if args[0] == 'sysctl':
-            return self.duid_data, self.stderr
+            return self.duid_data, bytes(self.stderr, encoding='utf-8')
         raise ValueError(f'Unexpected command arguments: {args}')
 
 
 # pylint: disable=unused-argument
-def test_load_duidmap_get_sysctl_output__(monkeypatch):
+def test_load_duidmap_get_sysctl_output__(monkeypatch) -> None:
     """
     Mock the __get_sysctl_output__ return value for DUID map, loading 'real' data
     with 'real' commmand
@@ -56,7 +57,7 @@ def test_load_duidmap_get_sysctl_output__(monkeypatch):
 
 
 # pylint: disable=unused-argument
-def test_load_duidmap(openbsd_fstab):
+def test_load_duidmap(openbsd_fstab) -> None:
     """
     Test loading OpenBSD DUID map with mocked sysctl data
     """
@@ -65,7 +66,7 @@ def test_load_duidmap(openbsd_fstab):
 
 
 # pylint: disable=unused-argument
-def test_load_duidmap_get_device_valid(openbsd_fstab):
+def test_load_duidmap_get_device_valid(openbsd_fstab) -> None:
     """
     Test looking up a valid device from OpenBSD DUID map
     """
@@ -73,7 +74,7 @@ def test_load_duidmap_get_device_valid(openbsd_fstab):
     assert obj.get_device(VALID_DUID) == VALID_DUID_DEVICE
 
 
-def test_load_duidmap_get_device_invalid(openbsd_fstab):
+def test_load_duidmap_get_device_invalid(openbsd_fstab) -> None:
     """
     Test looking up a invalid device from OpenBSD DUID map
     """
@@ -81,7 +82,7 @@ def test_load_duidmap_get_device_invalid(openbsd_fstab):
     assert obj.get_device(INVALID_DUID) is None
 
 
-def test_openbsd_fstab_properties(openbsd_fstab):
+def test_openbsd_fstab_properties(openbsd_fstab) -> None:
     """
     Test properties of a OpenBSD fstab object
     """

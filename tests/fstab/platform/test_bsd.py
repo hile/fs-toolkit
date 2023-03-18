@@ -9,14 +9,14 @@ Unit tests for fs_toolkit.fstab module with FreeBSD data
 from .validators import validate_fstab
 
 
-def test_freebsd_fstab_properties(bsd_fstab):
+def test_freebsd_fstab_properties(bsd_fstab) -> None:
     """
     Test properties of a BSD fstab object
     """
     validate_fstab(bsd_fstab)
 
 
-def test_freebsd_fstab_get_by_mountpoint(bsd_fstab):
+def test_freebsd_fstab_get_by_mountpoint(bsd_fstab) -> None:
     """
     Test looking up fstab item by mountpoint
     """

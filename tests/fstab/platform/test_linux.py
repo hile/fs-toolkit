@@ -13,7 +13,7 @@ FSTAB_SPACED_MOUNTPOINT = '/dir with spaces'
 FSTAB_TABBED_MOUNTPOINT = '/dir\twith\ttabs'
 
 
-def test_linux_fstab_properties(linux_fstab):
+def test_linux_fstab_properties(linux_fstab) -> None:
     """
     Test properties of a Linux fstab object
     """
@@ -22,7 +22,7 @@ def test_linux_fstab_properties(linux_fstab):
     validate_fstab(linux_fstab)
 
 
-def test_linux_fstab_get_by_device(linux_fstab):
+def test_linux_fstab_get_by_device(linux_fstab) -> None:
     """
     Get looking up fstab entry by label
     """
@@ -32,7 +32,7 @@ def test_linux_fstab_get_by_device(linux_fstab):
             assert linux_fstab.get_by_device(item.device) == item
 
 
-def test_linux_fstab_get_by_label(linux_fstab):
+def test_linux_fstab_get_by_label(linux_fstab) -> None:
     """
     Get looking up fstab entry by label
     """
@@ -41,7 +41,7 @@ def test_linux_fstab_get_by_label(linux_fstab):
     assert linux_fstab.get_by_label('abcde') is None
 
 
-def test_linux_fstab_get_by_mountpoint_encoded(fstab_encoded_paths):
+def test_linux_fstab_get_by_mountpoint_encoded(fstab_encoded_paths) -> None:
     """
     Get looking up fstab entry by mountpoint with encoded filenames
     """

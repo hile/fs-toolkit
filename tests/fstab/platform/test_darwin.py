@@ -9,7 +9,7 @@ Unit tests for fs_toolkit.fstab module with macOS Darwin data
 from .validators import validate_fstab
 
 
-def test_darwin_fstab_properties(darwin_fstab):
+def test_darwin_fstab_properties(darwin_fstab) -> None:
     """
     Test properties of a macOS darwin fstab object
     """
@@ -19,7 +19,7 @@ def test_darwin_fstab_properties(darwin_fstab):
         assert isinstance(entry.uuid, str)
 
 
-def test_darwin_fstab_get_by_uuid(darwin_fstab):
+def test_darwin_fstab_get_by_uuid(darwin_fstab) -> None:
     """
     Get looking up fstab entry by UUID
     """

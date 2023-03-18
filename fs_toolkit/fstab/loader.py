@@ -7,7 +7,7 @@
 Loader for fstab file details with OS specific
 """
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from ..base import LineLoader
 from ..exceptions import FilesystemError
@@ -18,6 +18,13 @@ from .platform.bsd import BSDFstabComment, BSDFstabEntry
 from .platform.darwin import DarwinFstabComment, DarwinFstabEntry
 from .platform.linux import LinuxFstabComment, LinuxFstabEntry
 from .platform.openbsd import OpenBSDFstabComment, OpenBSDFstabEntry
+
+FILTER_ARGS = (
+    'device',
+    'label',
+    'mountpoint',
+    'uuid'
+)
 
 
 class Fstab(LineLoader):
@@ -117,6 +124,46 @@ class Fstab(LineLoader):
         Get a fstab item by label
         """
         return self.__get_by_attr__('mountpoint', self.__encode_mountpoint_path__(path))
+
+    def __validate_filter_kwargs__(self, **kwargs: Dict[str, str]) -> Dict[str, str]:
+        """
+        Validate kwargs used for filtering
+        """
+        if not kwargs:
+            raise FilesystemError('Missing filter arguments')
+        if not set(kwargs.keys()).issubset(set(FILTER_ARGS)):
+            raise FilesystemError('Invalid query arguments')
+        for attr, value in kwargs.items():
+            if not value:
+                raise FilesystemError(f'Empty value for {attr} filter')
+        return kwargs
+
+    def get(self, **kwargs: Dict[str, str]) -> Optional[FstabEntry]:
+        """
+        Unified 'get' function to fetch item by one or more specified attributes
+
+        Valid fields for kwargs are 'device', label', 'mountpoint' and 'uuid'
+        """
+        entry = None
+        for attr, value in self.__validate_filter_kwargs__(**kwargs).items():
+            match = getattr(self, f'get_by_{attr}')(value)
+            if match:
+                if entry and match != entry:
+                    raise FilesystemError('Query arguments match different fstab enties')
+                entry = match
+        return entry
+
+    def filter(self, **kwargs: Dict[str, str]) -> List[FstabEntry]:
+        """
+        Similar to 'get' method but can return multiple different fstab entries
+        matching filter arguments
+        """
+        matches = []
+        for attr, value in self.__validate_filter_kwargs__(**kwargs).items():
+            match = getattr(self, f'get_by_{attr}')(value)
+            if match:
+                matches.append(match)
+        return matches
 
     def update(self) -> None:
         """

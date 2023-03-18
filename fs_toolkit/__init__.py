@@ -6,3 +6,6 @@
 """
 Python utility to load mountpoints, disk usage and fstab entry information
 """
+# flake8: noqa: F401
+from .fstab.loader import Fstab
+from .mounts.loader import Mountpoints
