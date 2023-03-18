@@ -90,7 +90,7 @@ class Fstab(LineLoader):
 
         For full BSD compatibility this should implement full strunvis(3) encoding support
         """
-        return Path(str(path).replace(' ', '\\040').replace('\t', '\\011'))
+        return Path(str(path).replace(' ', '\\040').replace('\t', '\\011')).expanduser()
 
     def __get_by_attr__(self, attr: str, value: str) -> Optional[FstabEntry]:
         """
